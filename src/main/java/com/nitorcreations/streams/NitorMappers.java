@@ -18,14 +18,11 @@
 package com.nitorcreations.streams;
 
 import java.util.AbstractMap;
-import java.util.Collections;
 import java.util.Map;
 import java.util.function.BiConsumer;
 import java.util.function.BiFunction;
 import java.util.function.Consumer;
 import java.util.function.Function;
-
-import static com.nitorcreations.streams.NitorCollectors.entriesToMap;
 
 public final class NitorMappers {
     private NitorMappers() { /** prevent instantiation */}
@@ -35,7 +32,7 @@ public final class NitorMappers {
      * <p/>
      * Example:
      * <pre>{@code
-     *   Map<String, Integer> map = Collections.emptyMap(); // Or whatever
+     *   Map<String, Integer> map = singletonMap("foo", 1); // Or whatever
      *   Map<String, String> mapped = map.entrySet().stream()
      *                                   .map(mappingValue((key, value) -> "Value was: " + value))
      *                                   .collect(entriesToMap());
@@ -56,7 +53,7 @@ public final class NitorMappers {
      * <p/>
      * Example:
      * <pre>{@code
-     *   Map<String, Integer> map = Collections.emptyMap(); // Or whatever
+     *   Map<String, Integer> map = singletonMap("foo", 1); // Or whatever
      *   Map<Integer, Integer> mapped = map.entrySet().stream()
      *                                     .map(mappingKey((key, value) -> key.length()))
      *                                     .collect(NitorCollectors.entriesToMap());
@@ -69,8 +66,6 @@ public final class NitorMappers {
      * @return a mapper from entry -> entry
      */
     public static <K, V, KK> Function<Map.Entry<K,V>, Map.Entry<KK, V>> mappingKey(BiFunction<K, V, KK> mapper) {
-        Map<String, Integer> map = Collections.emptyMap();
-        Map<Integer, Integer> mapped= map.entrySet().stream().map(mappingKey((key, value) -> key.length())).collect(entriesToMap());
         return entry -> entryOf(mapper.apply(entry.getKey(), entry.getValue()), entry.getValue());
     }
 
@@ -79,7 +74,7 @@ public final class NitorMappers {
      * <p/>
      * Example:
      * <pre>{@code
-     *   Map<String, Integer> map = Collections.emptyMap(); // Or whatever
+     *   Map<String, Integer> map = singletonMap("foo", 1); // Or whatever
      *   List<String> mapped = map.entrySet().stream()
      *                            .map(mappingEntry((key, value) -> key + value))
      *                            .collect(toList());
@@ -100,7 +95,7 @@ public final class NitorMappers {
      * <p/>
      * Example:
      * <pre>{@code
-     *   Map<String, Integer> map = Collections.emptyMap(); // Or whatever
+     *   Map<String, Integer> map = singletonMap("foo", 1); // Or whatever
      *   map.entrySet().stream()
      *      .map(mappingValue((k, v) -> ...)
      *      .forEach(consumingEntry((key, value) -> ...));
