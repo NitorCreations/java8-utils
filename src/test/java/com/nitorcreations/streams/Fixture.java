@@ -42,13 +42,18 @@ public class Fixture {
     }
 
     public static List<Map.Entry<String, Integer>> entries = asList(
+            entry("Eka", 3),
+            entry("Toka", 4),
+            entry("Kolmas", 5)
+    );
+
+    public static List<Map.Entry<String, Integer>> entriesWithDuplicates = asList(
             entry("Eka", 1),
             entry("Eka", 2),
             entry("Eka", 3),
             entry("Toka", 4),
             entry("Kolmas", 5)
     );
-
 
     public static <K,V> Map.Entry<K, V> entry(K key, V value) {
         return new AbstractMap.SimpleImmutableEntry<>(key, value);
