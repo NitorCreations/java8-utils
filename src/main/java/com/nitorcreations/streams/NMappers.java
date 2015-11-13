@@ -24,8 +24,8 @@ import java.util.function.BiFunction;
 import java.util.function.Consumer;
 import java.util.function.Function;
 
-public final class NitorMappers {
-    private NitorMappers() { /** prevent instantiation */}
+public final class NMappers {
+    private NMappers() { /** prevent instantiation */}
 
     /**
      * A function to map the values of an {@link java.util.Map.Entry} and return the modified entry. Provides the key to the mapper function as a convenience.
@@ -56,7 +56,7 @@ public final class NitorMappers {
      *   Map<String, Integer> map = singletonMap("foo", 1); // Or whatever
      *   Map<Integer, Integer> mapped = map.entrySet().stream()
      *                                     .map(mappingKey((key, value) -> key.length()))
-     *                                     .collect(NitorCollectors.entriesToMap());
+     *                                     .collect(NCollectors.entriesToMap());
      * }</pre>
      *
      * @param mapper the mapping function for the values

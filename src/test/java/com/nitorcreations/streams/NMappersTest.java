@@ -24,12 +24,12 @@ import java.util.List;
 import java.util.Map;
 
 import static com.nitorcreations.streams.Fixture.linkedMap;
-import static com.nitorcreations.streams.NitorCollectors.entriesToMap;
-import static com.nitorcreations.streams.NitorMappers.*;
+import static com.nitorcreations.streams.NCollectors.entriesToMap;
+import static com.nitorcreations.streams.NMappers.*;
 import static java.util.stream.Collectors.toList;
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class NitorMappersTest {
+public class NMappersTest {
 
     @Test
     public void test_mappingValue() {

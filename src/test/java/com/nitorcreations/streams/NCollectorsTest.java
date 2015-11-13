@@ -25,12 +25,12 @@ import java.util.Map;
 import static com.nitorcreations.streams.Fixture.entriesWithDuplicates;
 import static com.nitorcreations.streams.Fixture.entries;
 import static com.nitorcreations.streams.Fixture.listWithDuplicates;
-import static com.nitorcreations.streams.NitorCollectors.countingOccurrences;
-import static com.nitorcreations.streams.NitorCollectors.entriesToMap;
+import static com.nitorcreations.streams.NCollectors.countingOccurrences;
+import static com.nitorcreations.streams.NCollectors.entriesToMap;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.util.Lists.emptyList;
 
-public class NitorCollectorsTest {
+public class NCollectorsTest {
 
     //
     // COUNT OCCURRENCES

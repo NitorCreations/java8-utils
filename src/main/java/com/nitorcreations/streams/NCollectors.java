@@ -26,8 +26,8 @@ import static java.util.stream.Collectors.counting;
 import static java.util.stream.Collectors.groupingBy;
 import static java.util.stream.Collectors.toMap;
 
-public final class NitorCollectors {
-    private NitorCollectors() { /** prevent instantiation */}
+public final class NCollectors {
+    private NCollectors() { /** prevent instantiation */}
 
     public static <T> Collector<T, ?, Map<T, Long>> countingOccurrences() {
         return groupingBy(identity(), counting());

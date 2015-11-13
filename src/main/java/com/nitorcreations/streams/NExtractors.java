@@ -26,8 +26,8 @@ import java.util.stream.Stream;
 import static java.util.stream.Collectors.toList;
 import static java.util.stream.Collectors.toSet;
 
-public final class NitorExtractors {
-    private NitorExtractors() { /** prevent instantiation */}
+public final class NExtractors {
+    private NExtractors() { /** prevent instantiation */}
 
     public static <F, T> Stream<T> doWithKeys(Map<F, ?> map, Function<F, T> fn) {
         return map.keySet().stream().map(fn);

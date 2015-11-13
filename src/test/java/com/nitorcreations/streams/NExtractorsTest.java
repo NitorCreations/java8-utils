@@ -20,12 +20,12 @@ package com.nitorcreations.streams;
 import org.junit.Test;
 
 import static com.nitorcreations.streams.Fixture.linkedMap;
-import static com.nitorcreations.streams.NitorExtractors.*;
+import static com.nitorcreations.streams.NExtractors.*;
 import static java.util.Collections.emptyMap;
 import static java.util.function.Function.identity;
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class NitorExtractorsTest {
+public class NExtractorsTest {
 
     //
     // DO WITH KEYS
