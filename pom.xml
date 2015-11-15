@@ -123,13 +123,6 @@
                 <groupId>org.jacoco</groupId>
                 <artifactId>jacoco-maven-plugin</artifactId>
                 <version>${maven-plugin.jacoco.version}</version>
-                <configuration>
-                    <excludes>
-                        <exclude>**/parkandride/dev/**</exclude>
-                        <exclude>**/parkandride/back/sql/**</exclude>
-                        <exclude>**/parkandride/core/domain/wkt/**</exclude>
-                    </excludes>
-                </configuration>
                 <executions>
                     <execution>
                         <id>prepare-agent</id>
