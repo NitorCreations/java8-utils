@@ -30,6 +30,7 @@
     </scm>
 
     <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven-plugin.coveralls.version>4.0.0</maven-plugin.coveralls.version>
         <coveralls.token>Pf4aRjsZCJMfGqjSr5ZLww2ZwF9syaoSE</coveralls.token>
 
