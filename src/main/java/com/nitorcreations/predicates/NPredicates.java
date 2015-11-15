@@ -26,6 +26,9 @@ public final class NPredicates {
 
     /**
      * Predicate that checks if {@code value == x}
+     * @param value the value to compare to
+     * @param <T> type of value
+     * @return predicate
      */
     public static <T> Predicate<T> is(T value) {
         return x -> x == value;
@@ -33,6 +36,9 @@ public final class NPredicates {
 
     /**
      * Predicate that checks {@code value.equals(x)}
+     * @param value the value to compare to
+     * @param <T> type of value
+     * @return predicate
      */
     public static <T> Predicate<T> equalTo(T value) {
         return x -> Objects.equals(value, x);
@@ -40,6 +46,9 @@ public final class NPredicates {
 
     /**
      * Predicate that inverts the result of target predicate.
+     * @param predicate the predicate to invert
+     * @param <T> type of value
+     * @return predicate
      */
     public static <T> Predicate<T> not(Predicate<T> predicate) {
         return x -> !predicate.test(x);
@@ -47,6 +56,9 @@ public final class NPredicates {
 
     /**
      * Predicate that checks if {@code !(value == x)}
+     * @param value the value to compare to
+     * @param <T> type of value
+     * @return predicate
      */
     public static <T> Predicate<T> not(T value) {
         return not(is(value));
@@ -54,15 +66,28 @@ public final class NPredicates {
 
     /**
      * Predicate that checks if {@code !value.equalTo(x)}
+     * @param value the value to compare to
+     * @param <T> type of value
+     * @return predicate
      */
     public static <T> Predicate<T> notEqualTo(T value) {
         return not(equalTo(value));
     }
 
+    /**
+     * Predicate that checks if {@code x == null}
+     * @param <T> type of value
+     * @return predicate
+     */
     public static <T> Predicate<T> isNull() {
         return x -> x == null;
     }
 
+    /**
+     * Predicate that checks if {@code x != null}
+     * @param <T> type of value
+     * @return predicate
+     */
     public static <T> Predicate<T> notNull() {
         return not(isNull());
     }
@@ -71,9 +96,9 @@ public final class NPredicates {
      * Predicate that checks if {@code test} matches the result of {@code fn}
      * @param fn the fn that is applied to the element under test
      * @param test the predicate applied to the result of {@code fn}
-     * @param <T>
-     * @param <S>
-     * @return
+     * @param <T> source type
+     * @param <S> target type
+     * @return predicate
      */
     public static <T, S> Predicate<T> having(Function<T, S> fn, Predicate<S> test) {
         Objects.requireNonNull(fn, "fn must be supplied");
@@ -81,6 +106,14 @@ public final class NPredicates {
         return x -> test.test(fn.apply(x));
     }
 
+    /**
+     * Predicate that checks if {@code value} is equal to the result of {@code fn}
+     * @param fn the fn that is applied to the element under test
+     * @param value the value to compare to
+     * @param <T> source type
+     * @param <S> target type
+     * @return predicate
+     */
     public static <T, S> Predicate<T> havingEqual(Function<T, S> fn, S value) {
         Objects.requireNonNull(fn, "fn must be supplied");
         return x -> equalTo(value).test(fn.apply(x));
@@ -88,6 +121,9 @@ public final class NPredicates {
 
     /**
      * Shorthand for {@code having(fn, equalTo(true))}
+     * @param fn the fn that is applied to the element under test
+     * @param <T> source type
+     * @return predicate
      * @see #having(Function, Predicate)
      * @see #equalTo(Object)
      */
@@ -97,6 +133,9 @@ public final class NPredicates {
 
     /**
      * Shorthand for {@code having(fn, equalTo(false))}
+     * @param fn the fn that is applied to the element under test
+     * @param <T> source type
+     * @return predicate
      * @see #having(Function, Predicate)
      * @see #equalTo(Object)
      */

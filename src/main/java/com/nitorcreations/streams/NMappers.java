@@ -29,7 +29,7 @@ public final class NMappers {
 
     /**
      * A function to map the values of an {@link java.util.Map.Entry} and return the modified entry. Provides the key to the mapper function as a convenience.
-     * <p/>
+     * <p>
      * Example:
      * <pre>{@code
      *   Map<String, Integer> map = singletonMap("foo", 1); // Or whatever
@@ -42,7 +42,7 @@ public final class NMappers {
      * @param <K> key type, will not change
      * @param <V> value source type
      * @param <W> value target type
-     * @return a mapper from entry -> entry
+     * @return a mapper from entry to entry
      */
     public static <K, V, W> Function<Map.Entry<K,V>, Map.Entry<K, W>> mappingValue(BiFunction<K, V, W> mapper) {
         return entry -> entryOf(entry.getKey(), mapper.apply(entry.getKey(), entry.getValue()));
@@ -50,7 +50,7 @@ public final class NMappers {
 
     /**
      * A function to map the keys of an {@link java.util.Map.Entry} and return the modified entry. Provides the value to the mapper function as a convenience
-     * <p/>
+     * <p>
      * Example:
      * <pre>{@code
      *   Map<String, Integer> map = singletonMap("foo", 1); // Or whatever
@@ -63,7 +63,7 @@ public final class NMappers {
      * @param <K> key source type
      * @param <V> value type, will not change
      * @param <KK> key target type
-     * @return a mapper from entry -> entry
+     * @return a mapper from entry to entry
      */
     public static <K, V, KK> Function<Map.Entry<K,V>, Map.Entry<KK, V>> mappingKey(BiFunction<K, V, KK> mapper) {
         return entry -> entryOf(mapper.apply(entry.getKey(), entry.getValue()), entry.getValue());
@@ -71,7 +71,7 @@ public final class NMappers {
 
     /**
      * A function to map the entries to any type.
-     * <p/>
+     * <p>
      * Example:
      * <pre>{@code
      *   Map<String, Integer> map = singletonMap("foo", 1); // Or whatever
@@ -84,7 +84,7 @@ public final class NMappers {
      * @param <K> key type, will not change
      * @param <V> value type, will not change
      * @param <OUT> target type
-     * @return a mapper from entry -> entry
+     * @return a mapper from entry to {@code OUT}
      */
     public static <K, V, OUT> Function<Map.Entry<K,V>, OUT> mappingEntry(BiFunction<K, V, OUT> mapper) {
         return entry -> mapper.apply(entry.getKey(), entry.getValue());
@@ -92,7 +92,7 @@ public final class NMappers {
 
     /**
      * A convenience function to consume map entries, e.g., when you need transformations during stream processing
-     * <p/>
+     * <p>
      * Example:
      * <pre>{@code
      *   Map<String, Integer> map = singletonMap("foo", 1); // Or whatever
@@ -112,6 +112,11 @@ public final class NMappers {
 
     /**
      * Convenience method to create a {@link java.util.AbstractMap.SimpleImmutableEntry}
+     * @param key the key
+     * @param value the value
+     * @param <K> key type
+     * @param <V> value type
+     * @return entry with {@code key} as left side and {@code value} as right side
      */
     public static <K,V> Map.Entry<K, V> entryOf(K key, V value) {
         return new AbstractMap.SimpleImmutableEntry<>(key, value);

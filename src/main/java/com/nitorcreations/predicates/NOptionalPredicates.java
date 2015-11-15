@@ -28,6 +28,8 @@ public final class NOptionalPredicates {
 
     /**
      * Predicate that checks if optional is empty
+     * @param <T> type of containing optional
+     * @return the predicate
      */
     public static <T> Predicate<Optional<? extends T>> empty() {
         return not(present());
@@ -35,14 +37,20 @@ public final class NOptionalPredicates {
 
     /**
      * Predicate that checks if optional is present
+     * @param <T> type of containing optional
+     * @return the predicate
      */
     public static <T> Predicate<Optional<? extends T>> present() {
         return x -> x.isPresent();
     }
 
+
     /**
      * Predicate that checks if value in optional matches target.
      * Returns {@code false} if value not present.
+     * @param predicate the predicate to apply to the optional's contents
+     * @param <T> type of containing optional
+     * @return the predicate
      */
     public static <T> Predicate<Optional<? extends T>> havingValue(Predicate<T> predicate) {
         return NOptionalPredicates.<T>present().and(o -> predicate.test(o.get()));
@@ -50,6 +58,9 @@ public final class NOptionalPredicates {
 
     /**
      * Shorthand for {@code havingValue(equalTo(value))}
+     * @param value the value to compare the contents to
+     * @param <T> type of containing optional
+     * @return the predicate
      */
     public static <T> Predicate<Optional<? extends T>> havingValue(T value) {
         return havingValue(equalTo(value));
