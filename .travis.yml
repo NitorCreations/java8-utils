@@ -6,7 +6,7 @@ cache:
   directories:
     - $HOME/.m2
 script:
-  - mvn verify -Dmaven.javadoc.skip=true -B -V
+  - mvn verify javadoc:javadoc -B -V
 after_success:
   - mvn coveralls:report
 notifications:

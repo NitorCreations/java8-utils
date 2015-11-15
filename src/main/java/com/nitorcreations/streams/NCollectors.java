@@ -29,6 +29,11 @@ import static java.util.stream.Collectors.toMap;
 public final class NCollectors {
     private NCollectors() { /** prevent instantiation */}
 
+    /**
+     * Counts occurrences of different elements in the stream
+     * @param <T> type of a single element in the stream
+     * @return collector
+     */
     public static <T> Collector<T, ?, Map<T, Long>> countingOccurrences() {
         return groupingBy(identity(), counting());
     }
@@ -36,6 +41,10 @@ public final class NCollectors {
     /**
      * NOTE: will throw exception on duplicate keys. See {@link #entriesToMap(BinaryOperator)} to
      * cope with this.
+     * @param <K> key
+     * @param <V> val
+     * @return collector
+     * @see #entriesToMap(BinaryOperator)
      */
     public static <K,V> Collector<Map.Entry<K,V>, ?, Map<K, V>> entriesToMap() {
         return toMap(
@@ -44,6 +53,14 @@ public final class NCollectors {
         );
     }
 
+    /**
+     * Collect a stream of entries to a map. Uses {@code mergeFn} to decide what to do on duplicate keys.
+     * If duplicate keys are not expected, you can use {@link #entriesToMap()}
+     * @param mergeFn the function to merge values for duplicate keys.
+     * @param <K> key
+     * @param <V> val
+     * @return collector
+     */
     public static <K,V> Collector<Map.Entry<K,V>, ?, Map<K, V>> entriesToMap(BinaryOperator<V> mergeFn) {
         return toMap(
                 entry -> entry.getKey(),
