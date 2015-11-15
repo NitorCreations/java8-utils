@@ -30,7 +30,10 @@
     </scm>
 
     <properties>
-        <maven-plugin.coveralls.version>3.0.0</maven-plugin.coveralls.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven-plugin.coveralls.version>4.0.0</maven-plugin.coveralls.version>
+        <coveralls.token>Pf4aRjsZCJMfGqjSr5ZLww2ZwF9syaoSE</coveralls.token>
+
         <maven-plugin.jacoco.version>0.7.2.201409121644</maven-plugin.jacoco.version>
     </properties>
 
@@ -118,6 +121,9 @@
                 <groupId>org.eluder.coveralls</groupId>
                 <artifactId>coveralls-maven-plugin</artifactId>
                 <version>${maven-plugin.coveralls.version}</version>
+                <configuration>
+                    <repoToken>${coveralls.token}</repoToken>
+                </configuration>
             </plugin>
             <plugin>
                 <groupId>org.jacoco</groupId>
