@@ -102,7 +102,7 @@ public final class NPredicates {
      */
     public static <T, S> Predicate<T> having(Function<T, S> fn, Predicate<S> test) {
         Objects.requireNonNull(fn, "fn must be supplied");
-        Objects.requireNonNull(test, "fn must be supplied");
+        Objects.requireNonNull(test, "test must be supplied");
         return x -> test.test(fn.apply(x));
     }
 
