@@ -51,14 +51,12 @@ Map<String, Integer> bMap = NMaps.mapping(asList("a", "bee", "cheetah"), s -> s.
      * in the list.
      * <p>
      * Will throw exception if sizes differ or either one is {@code null}.
-     * <p>
      *
-     *
-     * @param keys
-     * @param values
-     * @param <K>
-     * @param <V>
-     * @return
+     * @param keys the keys of the map
+     * @param values the values of the map
+     * @param <K> type of keys
+     * @param <V> type of values
+     * @return the map containing the entries 
      */
     public static <K,V> Map<K, V> mapOfLists(List<K> keys, List<V> values) {
         if (keys.size() != values.size()) {
