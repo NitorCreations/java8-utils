@@ -1,13 +1,14 @@
-package com.nitorcreations.streams;
+package com.nitorcreations.collections;
 
+import com.nitorcreations.collections.NMaps;
 import org.junit.Test;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.Map;
 
 import static com.nitorcreations.streams.NMappers.entryOf;
-import static com.nitorcreations.streams.NMaps.*;
-import static com.nitorcreations.streams.NSets.asSet;
+import static com.nitorcreations.collections.NMaps.*;
+import static com.nitorcreations.collections.NSets.asSet;
 import static com.nitorcreations.TestUtils.invokePrivateConstructor;
 import static java.util.Arrays.asList;
 import static java.util.function.Function.identity;
