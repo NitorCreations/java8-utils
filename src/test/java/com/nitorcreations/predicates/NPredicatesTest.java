@@ -20,7 +20,10 @@ package com.nitorcreations.predicates;
 import org.assertj.core.util.Strings;
 import org.junit.Test;
 
+import java.lang.reflect.InvocationTargetException;
+
 import static com.nitorcreations.predicates.NPredicates.*;
+import static com.nitorcreations.streams.TestUtils.invokePrivateConstructor;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class NPredicatesTest {
@@ -31,6 +34,11 @@ public class NPredicatesTest {
     final String s1 = "Foobar";
     final String s2 = "Baz";
     final String nullString = null;
+
+    @Test
+    public void forCoverage() throws NoSuchMethodException, IllegalAccessException, InvocationTargetException, InstantiationException {
+        invokePrivateConstructor(NPredicates.class);
+    }
 
     @Test
     public void testIs() {

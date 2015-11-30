@@ -19,12 +19,14 @@ package com.nitorcreations.streams;
 
 import org.junit.Test;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
 
 import static com.nitorcreations.streams.NStreams.asStream;
+import static com.nitorcreations.streams.TestUtils.invokePrivateConstructor;
 import static java.util.Arrays.asList;
 import static java.util.stream.Collectors.toList;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -35,6 +37,11 @@ public class NStreamsTest {
     private Optional<String> emptyOpt = Optional.empty();
 
     final List<Integer> list = asList(1, 2, 3, 4, 5);
+
+    @Test
+    public void forCoverage() throws NoSuchMethodException, IllegalAccessException, InvocationTargetException, InstantiationException {
+        invokePrivateConstructor(NStreams.class);
+    }
 
     @Test
     public void testOptionalToStream() {

@@ -19,14 +19,14 @@ package com.nitorcreations.predicates;
 
 import org.junit.Test;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Stream;
 
-import static com.nitorcreations.predicates.NOptionalPredicates.empty;
-import static com.nitorcreations.predicates.NOptionalPredicates.havingValue;
-import static com.nitorcreations.predicates.NOptionalPredicates.present;
+import static com.nitorcreations.predicates.NOptionalPredicates.*;
 import static com.nitorcreations.predicates.NPredicates.having;
+import static com.nitorcreations.streams.TestUtils.invokePrivateConstructor;
 import static java.util.stream.Collectors.toList;
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -34,6 +34,11 @@ public class NOptionalPredicatesTest {
 
     private final Optional<String> emptyOpt = Optional.empty();
     private final Optional<String> opt = Optional.of("Foo");
+
+    @Test
+    public void forCoverage() throws NoSuchMethodException, IllegalAccessException, InvocationTargetException, InstantiationException {
+        invokePrivateConstructor(NOptionalPredicates.class);
+    }
 
     @Test
     public void testEmpty() {

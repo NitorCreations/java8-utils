@@ -19,14 +19,21 @@ package com.nitorcreations.streams;
 
 import org.junit.Test;
 
+import java.lang.reflect.InvocationTargetException;
+
 import static com.nitorcreations.streams.Fixture.linkedMap;
 import static com.nitorcreations.streams.NExtractors.*;
+import static com.nitorcreations.streams.TestUtils.invokePrivateConstructor;
 import static java.util.Collections.emptyMap;
 import static java.util.function.Function.identity;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class NExtractorsTest {
 
+    @Test
+    public void forCoverage() throws NoSuchMethodException, IllegalAccessException, InvocationTargetException, InstantiationException {
+        invokePrivateConstructor(NExtractors.class);
+    }
     //
     // DO WITH KEYS
     //
