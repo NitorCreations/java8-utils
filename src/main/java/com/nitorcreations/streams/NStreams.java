@@ -26,14 +26,33 @@ import java.util.stream.StreamSupport;
 public final class NStreams {
     private NStreams() { /** prevent instantiation */}
 
+    /**
+     * Convert an {@link Optional} to a {@link Stream}
+     * @param optional the optional to convert to a stream
+     * @param <T> the type of the element
+     * @return a stream containing the optional's value or empty stream if not present
+     */
     public static <T> Stream<T> asStream(Optional<T> optional) {
         return optional.map(Stream::of).orElse(Stream.empty());
     }
 
+    /**
+     * Convert an {@link Iterator} to a {@link Stream}.
+     *
+     * @param iterator the iterator to convert to a stream
+     * @param <T> the type of a single element
+     * @return a stream containing the values of the iterator
+     */
     public static <T> Stream<T> asStream(Iterator<T> iterator) {
         return asStream(iterator, false);
     }
-
+    /**
+     * Convert an {@link Iterator} to a {@link Stream}.
+     * @param iterator the iterator to convert to a stream
+     * @param <T> the type of a single element
+     * @param parallel if true then the returned stream is a parallel stream; if false the returned stream is a sequential stream.
+     * @return a stream containing the values of the iterator
+     */
     public static <T> Stream<T> asStream(Iterator<T> iterator, boolean parallel) {
         Iterable<T> iterable = () -> iterator;
         return StreamSupport.stream(iterable.spliterator(), parallel);
