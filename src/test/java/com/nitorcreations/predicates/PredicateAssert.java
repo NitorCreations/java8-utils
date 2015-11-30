@@ -35,7 +35,8 @@ public class PredicateAssert<T> extends AbstractAssert<PredicateAssert<T>, Predi
         return this;
     }
 
-    public PredicateAssert<T> matchesAll(T... testables) {
+    @SafeVarargs
+    public final PredicateAssert<T> matchesAll(T... testables) {
         isNotNull();
         final List<T> errors = Arrays.stream(testables)
                 .filter(not(actual))
@@ -46,7 +47,8 @@ public class PredicateAssert<T> extends AbstractAssert<PredicateAssert<T>, Predi
         return this;
     }
 
-    public PredicateAssert<T> matchesNone(T... testables) {
+    @SafeVarargs
+    public final PredicateAssert<T> matchesNone(T... testables) {
         isNotNull();
         final List<T> errors = Arrays.stream(testables)
                 .filter(actual)

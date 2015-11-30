@@ -115,4 +115,18 @@ public class NPredicatesTest {
         assertThat(notHaving(Strings::isNullOrEmpty).test(s1)).isTrue();
         assertThat(notHaving(Strings::isNullOrEmpty).test(nullString)).isFalse();
     }
+
+    @Test
+    public void testAllOf() {
+        PredicateAssert.assertThat(allOf(notNull(), is(123l)))
+                .matches(123l)
+                .matchesNone(null, 122l);
+    }
+
+    @Test
+    public void testAnyOf() {
+        PredicateAssert.assertThat(anyOf(is(123l), isNull()))
+                .matchesAll(null, 123l)
+                .matchesNone(122l);
+    }
 }
