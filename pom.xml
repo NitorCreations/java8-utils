@@ -28,7 +28,10 @@
         <url>https://github.com/NitorCreations/java8-utils</url>
         <tag>HEAD</tag>
     </scm>
-
+    <issueManagement>
+      <url>https://github.com/NitorCreations/java8-utils/issues</url>
+      <system>GitHub</system>
+    </issueManagement>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven-plugin.coveralls.version>4.0.0</maven-plugin.coveralls.version>
