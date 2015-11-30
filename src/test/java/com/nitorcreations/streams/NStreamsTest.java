@@ -70,6 +70,20 @@ public class NStreamsTest {
     }
 
     @Test
+    public void iterableToStream() {
+        final List<Integer> actual = asStream(list).collect(toList());
+        assertThat(actual).containsExactlyElementsOf(list);
+    }
+
+    @Test
+    public void iterableToStream_parallel() {
+        final List<Integer> actual = asStream(list, true).collect(toList());
+        assertThat(actual)
+                .containsOnlyElementsOf(list)
+                .containsAll(list);
+    }
+
+    @Test
     public void test_concatenation_empty_lists() {
         List<String> emptylist = new ArrayList<>();
         List<String> combinedList = NStreams.concat(emptylist.stream(), emptylist.stream())

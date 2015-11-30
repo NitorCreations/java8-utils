@@ -46,6 +46,7 @@ public final class NStreams {
     public static <T> Stream<T> asStream(Iterator<T> iterator) {
         return asStream(iterator, false);
     }
+
     /**
      * Convert an {@link Iterator} to a {@link Stream}.
      * @param iterator the iterator to convert to a stream
@@ -54,7 +55,27 @@ public final class NStreams {
      * @return a stream containing the values of the iterator
      */
     public static <T> Stream<T> asStream(Iterator<T> iterator, boolean parallel) {
-        Iterable<T> iterable = () -> iterator;
+        return asStream(() -> iterator, parallel);
+    }
+
+    /**
+     * Convert an {@link Iterable} to a {@link Stream}
+     * @param iterable the iterable to convert
+     * @param <T> the type of a single element
+     * @return a (non-parallel) stream containing the values of the iterable
+     */
+    public static <T> Stream<T> asStream(Iterable<T> iterable) {
+        return asStream(iterable, false);
+    }
+
+    /**
+     * Convert an {@link Iterable} to a {@link Stream}
+     * @param iterable the iterable to convert
+     * @param parallel if true then the returned stream is a parallel stream; if false the returned stream is a sequential stream.
+     * @param <T> the type of a single element
+     * @return a stream containing the values of the iterable
+     */
+    public static <T> Stream<T> asStream(Iterable<T> iterable, boolean parallel) {
         return StreamSupport.stream(iterable.spliterator(), parallel);
     }
 
