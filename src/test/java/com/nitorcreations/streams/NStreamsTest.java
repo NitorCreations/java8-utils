@@ -19,7 +19,9 @@ package com.nitorcreations.streams;
 
 import org.junit.Test;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Optional;
 
 import static com.nitorcreations.streams.NStreams.asStream;
@@ -58,6 +60,29 @@ public class NStreamsTest {
         assertThat(actual)
                 .containsOnlyElementsOf(list)
                 .containsAll(list);
+    }
+
+    @Test
+    public void test_concatenation_empty_lists() {
+        List<String> emptylist = new ArrayList<>();
+        List<String> combinedList = NStreams.concat(emptylist.stream(), emptylist.stream())
+                .collect(toList());
+        assertThat(combinedList).isEmpty();
+    }
+
+    @Test
+    public void test_concatenation() {
+        List<String> list1 = asList("1", "11");
+        List<String> list2 = asList("2", "22");
+        List<String> list3 = asList("3");
+
+        List<String> combinedList = NStreams.concat(list1.stream(), list2.stream(), list3.stream()).collect(toList());
+        assertThat(combinedList).containsExactly("1","11","2","22","3");
+    }
+
+    @Test(expected = NoSuchElementException.class)
+    public void test_concatNulls() {
+        NStreams.concat();
     }
 
 }
