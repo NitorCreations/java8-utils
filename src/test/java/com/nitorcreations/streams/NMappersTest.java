@@ -19,6 +19,7 @@ package com.nitorcreations.streams;
 
 import org.junit.Test;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -26,10 +27,16 @@ import java.util.Map;
 import static com.nitorcreations.streams.Fixture.linkedMap;
 import static com.nitorcreations.streams.NCollectors.entriesToMap;
 import static com.nitorcreations.streams.NMappers.*;
+import static com.nitorcreations.streams.TestUtils.invokePrivateConstructor;
 import static java.util.stream.Collectors.toList;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class NMappersTest {
+
+    @Test
+    public void forCoverage() throws NoSuchMethodException, IllegalAccessException, InvocationTargetException, InstantiationException {
+        invokePrivateConstructor(NMappers.class);
+    }
 
     @Test
     public void test_mappingValue() {

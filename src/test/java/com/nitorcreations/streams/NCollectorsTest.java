@@ -19,6 +19,7 @@ package com.nitorcreations.streams;
 
 import org.junit.Test;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 import java.util.Map;
 
@@ -27,10 +28,16 @@ import static com.nitorcreations.streams.Fixture.entries;
 import static com.nitorcreations.streams.Fixture.listWithDuplicates;
 import static com.nitorcreations.streams.NCollectors.countingOccurrences;
 import static com.nitorcreations.streams.NCollectors.entriesToMap;
+import static com.nitorcreations.streams.TestUtils.invokePrivateConstructor;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.util.Lists.emptyList;
 
 public class NCollectorsTest {
+
+    @Test
+    public void forCoverage() throws NoSuchMethodException, IllegalAccessException, InvocationTargetException, InstantiationException {
+        invokePrivateConstructor(NCollectors.class);
+    }
 
     //
     // COUNT OCCURRENCES
