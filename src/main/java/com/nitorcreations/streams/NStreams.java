@@ -18,6 +18,7 @@
 package com.nitorcreations.streams;
 
 import java.util.Iterator;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.stream.Stream;
 import java.util.stream.StreamSupport;
@@ -36,5 +37,19 @@ public final class NStreams {
     public static <T> Stream<T> asStream(Iterator<T> iterator, boolean parallel) {
         Iterable<T> iterable = () -> iterator;
         return StreamSupport.stream(iterable.spliterator(), parallel);
+    }
+
+    /**
+     * Concatenate the given streams to a single stream. Follows the semantics
+     * of {@link Stream#concat(Stream, Stream)}.
+     * @param streams the streams to concatenate
+     * @param <T> type of the stream element
+     * @return a stream containing all of the elements in all of the streams
+     */
+    @SafeVarargs
+    public static <T> Stream<T> concat(Stream<T> ...streams) {
+      return Stream.of(streams)
+              .filter(Objects::nonNull)
+              .reduce(Stream::concat).get();
     }
 }
