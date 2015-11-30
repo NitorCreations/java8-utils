@@ -11,12 +11,6 @@ import static com.nitorcreations.streams.NMappers.entryOf;
 public final class NMaps {
     private NMaps() { /** prevent instantiation */}
 
-    /*
-    Map<String, Integer> aMap = NMaps.mapOf(entryOf("a", 1), entryOf("c", 2), ...);
-Map<String, Integer> bMap = NMaps.mapOf("a", 1, "c", 2, ...); // Up to five entries
-Map<String, Integer> bMap = NMaps.mapping(asList("a", "bee", "cheetah"), s -> s.length()); // Map from keys
-     */
-
     /**
      * Create a map of an arbitrary amount of map entries. Will throw exception on duplicate keys.
      * @param entries entries to collect to a map
@@ -56,7 +50,7 @@ Map<String, Integer> bMap = NMaps.mapping(asList("a", "bee", "cheetah"), s -> s.
      * @param values the values of the map
      * @param <K> type of keys
      * @param <V> type of values
-     * @return the map containing the entries 
+     * @return the map containing the entries
      */
     public static <K,V> Map<K, V> mapOfLists(List<K> keys, List<V> values) {
         if (keys.size() != values.size()) {
