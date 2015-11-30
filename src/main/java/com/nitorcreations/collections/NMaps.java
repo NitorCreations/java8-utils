@@ -1,4 +1,6 @@
-package com.nitorcreations.streams;
+package com.nitorcreations.collections;
+
+import com.nitorcreations.streams.NCollectors;
 
 import java.util.*;
 import java.util.function.BinaryOperator;

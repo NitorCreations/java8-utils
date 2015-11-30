@@ -1,4 +1,4 @@
-package com.nitorcreations.streams;
+package com.nitorcreations;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;

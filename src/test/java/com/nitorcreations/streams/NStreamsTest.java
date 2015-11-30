@@ -26,7 +26,7 @@ import java.util.NoSuchElementException;
 import java.util.Optional;
 
 import static com.nitorcreations.streams.NStreams.asStream;
-import static com.nitorcreations.streams.TestUtils.invokePrivateConstructor;
+import static com.nitorcreations.TestUtils.invokePrivateConstructor;
 import static java.util.Arrays.asList;
 import static java.util.stream.Collectors.toList;
 import static org.assertj.core.api.Assertions.assertThat;

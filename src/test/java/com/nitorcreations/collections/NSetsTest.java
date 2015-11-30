@@ -1,12 +1,13 @@
-package com.nitorcreations.streams;
+package com.nitorcreations.collections;
 
+import com.nitorcreations.collections.NSets;
 import org.junit.Test;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.Set;
 
-import static com.nitorcreations.streams.NSets.asSet;
-import static com.nitorcreations.streams.TestUtils.invokePrivateConstructor;
+import static com.nitorcreations.collections.NSets.asSet;
+import static com.nitorcreations.TestUtils.invokePrivateConstructor;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class NSetsTest {

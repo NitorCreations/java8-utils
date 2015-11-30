@@ -1,4 +1,6 @@
-package com.nitorcreations.streams;
+package com.nitorcreations.collections;
+
+import com.nitorcreations.streams.NStreams;
 
 import java.util.HashSet;
 import java.util.Iterator;
