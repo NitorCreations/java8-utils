@@ -28,7 +28,7 @@ import static com.nitorcreations.streams.Fixture.entries;
 import static com.nitorcreations.streams.Fixture.listWithDuplicates;
 import static com.nitorcreations.streams.NCollectors.countingOccurrences;
 import static com.nitorcreations.streams.NCollectors.entriesToMap;
-import static com.nitorcreations.streams.TestUtils.invokePrivateConstructor;
+import static com.nitorcreations.TestUtils.invokePrivateConstructor;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.util.Lists.emptyList;
 

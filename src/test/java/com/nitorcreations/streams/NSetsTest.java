@@ -6,7 +6,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.Set;
 
 import static com.nitorcreations.streams.NSets.asSet;
-import static com.nitorcreations.streams.TestUtils.invokePrivateConstructor;
+import static com.nitorcreations.TestUtils.invokePrivateConstructor;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class NSetsTest {

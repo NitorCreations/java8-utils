@@ -23,7 +23,7 @@ import org.junit.Test;
 import java.lang.reflect.InvocationTargetException;
 
 import static com.nitorcreations.predicates.NPredicates.*;
-import static com.nitorcreations.streams.TestUtils.invokePrivateConstructor;
+import static com.nitorcreations.TestUtils.invokePrivateConstructor;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class NPredicatesTest {

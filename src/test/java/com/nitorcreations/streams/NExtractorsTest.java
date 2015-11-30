@@ -23,7 +23,7 @@ import java.lang.reflect.InvocationTargetException;
 
 import static com.nitorcreations.streams.Fixture.linkedMap;
 import static com.nitorcreations.streams.NExtractors.*;
-import static com.nitorcreations.streams.TestUtils.invokePrivateConstructor;
+import static com.nitorcreations.TestUtils.invokePrivateConstructor;
 import static java.util.Collections.emptyMap;
 import static java.util.function.Function.identity;
 import static org.assertj.core.api.Assertions.assertThat;

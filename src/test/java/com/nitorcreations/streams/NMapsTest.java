@@ -8,7 +8,7 @@ import java.util.Map;
 import static com.nitorcreations.streams.NMappers.entryOf;
 import static com.nitorcreations.streams.NMaps.*;
 import static com.nitorcreations.streams.NSets.asSet;
-import static com.nitorcreations.streams.TestUtils.invokePrivateConstructor;
+import static com.nitorcreations.TestUtils.invokePrivateConstructor;
 import static java.util.Arrays.asList;
 import static java.util.function.Function.identity;
 import static org.assertj.core.api.Assertions.assertThat;
