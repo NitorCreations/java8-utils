@@ -1,6 +1,5 @@
 package com.nitorcreations.predicates;
 
-import java.util.List;
 import java.util.Objects;
 import java.util.function.Predicate;
 
@@ -80,9 +79,9 @@ public final class NStringPredicates {
      * @return predicate
      * @param substrings
      */
-    public static Predicate<String> containsAll(List<String> substrings) {
+    public static Predicate<String> containsAll(Iterable<String> substrings) {
         return NPredicates.<String> notNull()
-                .and(s -> substrings.stream()
+                .and(s -> asStream(substrings)
                         .filter(Objects::nonNull)
                         .map(s::contains)
                         .reduce(true, Boolean::logicalAnd));
@@ -142,5 +141,27 @@ public final class NStringPredicates {
      */
     public static Predicate<String> doesNotContainAnyOf(Iterable<String> substrings) {
         return not(containsAny(substrings)).and(notNull());
+    }
+
+    /**
+     * Check that the non-null string does not contain any of the the substrings. The predicate will return {@code false}
+     * is target is {@code null}
+     *
+     * @param substring the string to find
+     * @return predicate
+     */
+    public static Predicate<String> doesNotContainAllOf(String... substring) {
+        return doesNotContainAllOf(asList(substring));
+    }
+
+    /**
+     * Check that the non-null string does not contain any of the the substrings. The predicate will return {@code false}
+     * is target is {@code null}
+     *
+     * @return predicate
+     * @param substrings
+     */
+    public static Predicate<String> doesNotContainAllOf(Iterable<String> substrings) {
+        return not(containsAll(substrings)).and(notNull());
     }
 }

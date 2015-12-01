@@ -12,6 +12,7 @@ import static com.nitorcreations.predicates.NCollectionPredicates.*;
 import static com.nitorcreations.predicates.PredicateAssert.assertThat;
 import static java.util.Arrays.asList;
 import static java.util.Collections.emptyList;
+import static java.util.Collections.singletonList;
 
 public class NCollectionPredicatesTest {
 
@@ -24,55 +25,61 @@ public class NCollectionPredicatesTest {
     public void testEmpty() {
         assertThat(empty())
                 .matchesAll(new HashSet<>(), new ArrayList<>())
-                .matchesNone(null, asList(1), asSet(1));
+                .matchesNone(null, singletonList(1), asSet(1));
     }
 
     @Test
     public void testNotEmpty() {
         assertThat(notEmpty())
-                .matchesAll(asList(1), asSet(1))
+                .matchesAll(singletonList(1), asSet(1))
                 .matchesNone(null, new HashSet<>(), new ArrayList<>());
     }
 
     @Test
     public void testContains() {
-        final Long num = 666_666l;
+        final Long num = 666_666L;
         assertThat(contains(num))
-                .matchesAll(asList(1l, num), asSet(num), asList(666_666l))
-                .matchesNone(null, emptyList(), asList(113l));
+                .matchesAll(asList(1L, num), asSet(num), singletonList(666_666L))
+                .matchesNone(null, emptyList(), singletonList(113L));
     }
 
     @Test
     public void testContainsAll() {
-        final Long n1 = 123_123l;
-        final Long n2 = 321_321l;
+        final Long n1 = 123_123L;
+        final Long n2 = 321_321L;
         assertThat(containsAll(n1, n2))
                 .matchesAll(asList(n1, n2), asList(n2, n1), asSet(n1, n2))
-                .matchesNone(null, emptyList(), asList(113l));
+                .matchesNone(null, emptyList(), singletonList(113L));
     }
 
     @Test
     public void testContainsAny() {
-        final Long n1 = 123_123l;
-        final Long n2 = 321_321l;
+        final Long n1 = 123_123L;
+        final Long n2 = 321_321L;
         assertThat(containsAny(n1, n2))
-                .matchesAll(asList(n1), asList(n2), asList(n1, n2), asList(n2, n1), asSet(n1, n2))
-                .matchesNone(null, emptyList(), asList(113l));
+                .matchesAll(singletonList(n1), singletonList(n2), asList(n1, n2), asList(n2, n1), asSet(n1, n2))
+                .matchesNone(null, emptyList(), singletonList(113L));
     }
 
     @Test
     public void testDoesNotContain() {
-        final Long num = 666_666l;
+        final Long num = 666_666L;
         assertThat(doesNotContain(num))
-                .matchesAll(emptyList(), asList(113l))
-                .matchesNone(null, asList(1l, num), asSet(num), asList(666_666l));
+                .matchesAll(emptyList(), singletonList(113L))
+                .matchesNone(null, asList(1L, num), asSet(num), singletonList(666_666L));
     }
 
     @Test
     public void testDoesNotContainAnyOf() {
-        assertThat(doesNotContainAnyOf(123l, 321l))
-                .matchesAll(emptyList(), asList(113l))
-                .matchesNone(null, asList(1l, 123l), asSet(321l), asList(2l, 3l, 123l, 321l));
+        assertThat(doesNotContainAnyOf(123L, 321L))
+                .matchesAll(emptyList(), singletonList(113L))
+                .matchesNone(null, asList(1L, 123L), asSet(321L), asList(2L, 3L, 123L, 321L));
     }
 
+    @Test
+    public void testDoesNotContainAllOf() {
+        assertThat(doesNotContainAllOf(123L, 321L))
+                .matchesAll(emptyList(), singletonList(123L), singletonList(321L))
+                .matchesNone(null, asList(2L, 3L, 123L, 321L));
+    }
 }

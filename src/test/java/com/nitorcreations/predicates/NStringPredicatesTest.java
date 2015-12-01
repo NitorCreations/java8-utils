@@ -85,4 +85,11 @@ public class NStringPredicatesTest {
                 .matchesNone(null, "foo", "bar", "foobar", "ooffoo", "barfoo", "barfooazx");
     }
 
+    @Test
+    public void testDoesNotContainAllOf() {
+        assertThat(doesNotContainAllOf("foo", "bar"))
+                .matchesAll("", "baz", "of", "fo", "fo of", "foo ba", "fo bar", "foo", "bar")
+                .matchesNone(null, "foobar", "barfoo", "barfooazx");
+    }
+
 }

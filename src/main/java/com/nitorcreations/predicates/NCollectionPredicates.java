@@ -124,4 +124,29 @@ public final class NCollectionPredicates {
     public static <T, S extends Iterable<T>> Predicate<S> doesNotContainAnyOf(Iterable<T> elements) {
         return NPredicates.<S>notNull().and(not(containsAny(elements)));
     }
+
+    /**
+     * Checks that iterable is non-null and does not contain all of the target elements. Will return {@code true} if some of the elements are present
+     *
+     * @param elements elements to find
+     * @param <T> type of an element
+     * @param <S> type of the iterable
+     * @return predicate
+     */
+    @SafeVarargs
+    public static <T, S extends Iterable<T>> Predicate<S> doesNotContainAllOf(T... elements) {
+        return doesNotContainAllOf(asList(elements));
+    }
+
+    /**
+     * Checks that iterable is non-null and does not contain all of the target elements. Will return {@code true} if some of the elements are present
+     *
+     * @param elements
+     * @param <T> type of an element
+     * @param <S> type of the iterable
+     * @return predicate
+     */
+    public static <T, S extends Iterable<T>> Predicate<S> doesNotContainAllOf(Iterable<T> elements) {
+        return NPredicates.<S>notNull().and(not(containsAll(elements)));
+    }
 }
