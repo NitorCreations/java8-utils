@@ -5,10 +5,10 @@ import org.junit.Test;
 import java.lang.reflect.InvocationTargetException;
 import java.util.Set;
 
-import static com.nitorcreations.TestUtils.invokePrivateConstructor;
+import static com.nitorcreations.test.TestUtils.invokePrivateConstructor;
 import static com.nitorcreations.collections.NSets.asSet;
 import static java.util.Arrays.asList;
-import static org.assertj.core.api.Assertions.assertThat;
+import static com.nitorcreations.test.Assertions.assertThat;
 
 public class NSetsTest {
 

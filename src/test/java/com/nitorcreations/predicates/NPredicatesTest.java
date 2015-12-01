@@ -23,8 +23,8 @@ import org.junit.Test;
 import java.lang.reflect.InvocationTargetException;
 
 import static com.nitorcreations.predicates.NPredicates.*;
-import static com.nitorcreations.TestUtils.invokePrivateConstructor;
-import static org.assertj.core.api.Assertions.assertThat;
+import static com.nitorcreations.test.Assertions.assertThat;
+import static com.nitorcreations.test.TestUtils.invokePrivateConstructor;
 
 public class NPredicatesTest {
     final Object o2 = new Object();
@@ -118,14 +118,14 @@ public class NPredicatesTest {
 
     @Test
     public void testAllOf() {
-        PredicateAssert.assertThat(allOf(notNull(), is(123l)))
+        assertThat(allOf(notNull(), is(123l)))
                 .matches(123l)
                 .matchesNone(null, 122l);
     }
 
     @Test
     public void testAnyOf() {
-        PredicateAssert.assertThat(anyOf(is(123l), isNull()))
+        assertThat(anyOf(is(123l), isNull()))
                 .matchesAll(null, 123l)
                 .matchesNone(122l);
     }

@@ -6,10 +6,10 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.HashSet;
 
-import static com.nitorcreations.TestUtils.invokePrivateConstructor;
+import static com.nitorcreations.test.TestUtils.invokePrivateConstructor;
 import static com.nitorcreations.collections.NSets.asSet;
 import static com.nitorcreations.predicates.NCollectionPredicates.*;
-import static com.nitorcreations.predicates.PredicateAssert.assertThat;
+import static com.nitorcreations.test.Assertions.assertThat;
 import static java.util.Arrays.asList;
 import static java.util.Collections.emptyList;
 import static java.util.Collections.singletonList;

@@ -26,9 +26,9 @@ import java.util.stream.Stream;
 
 import static com.nitorcreations.predicates.NOptionalPredicates.*;
 import static com.nitorcreations.predicates.NPredicates.having;
-import static com.nitorcreations.TestUtils.invokePrivateConstructor;
+import static com.nitorcreations.test.TestUtils.invokePrivateConstructor;
 import static java.util.stream.Collectors.toList;
-import static org.assertj.core.api.Assertions.assertThat;
+import static com.nitorcreations.test.Assertions.assertThat;
 
 public class NOptionalPredicatesTest {
 

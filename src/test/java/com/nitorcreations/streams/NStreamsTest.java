@@ -28,10 +28,10 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import static com.nitorcreations.streams.NStreams.asStream;
-import static com.nitorcreations.TestUtils.invokePrivateConstructor;
+import static com.nitorcreations.test.TestUtils.invokePrivateConstructor;
 import static java.util.Arrays.asList;
 import static java.util.stream.Collectors.toList;
-import static org.assertj.core.api.Assertions.assertThat;
+import static com.nitorcreations.test.Assertions.assertThat;
 
 public class NStreamsTest {
 

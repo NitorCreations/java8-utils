@@ -4,9 +4,9 @@ import org.junit.Test;
 
 import java.lang.reflect.InvocationTargetException;
 
-import static com.nitorcreations.TestUtils.invokePrivateConstructor;
+import static com.nitorcreations.test.TestUtils.invokePrivateConstructor;
 import static com.nitorcreations.predicates.NStringPredicates.*;
-import static com.nitorcreations.predicates.PredicateAssert.assertThat;
+import static com.nitorcreations.test.Assertions.assertThat;
 
 public class NStringPredicatesTest {
 
