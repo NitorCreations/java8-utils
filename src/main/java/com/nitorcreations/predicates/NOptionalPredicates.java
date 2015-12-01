@@ -66,4 +66,23 @@ public final class NOptionalPredicates {
         return havingValue(equalTo(value));
     }
 
+    /**
+     * Shorthand for {@code havingValue(not(predicate))}
+     * @param predicate the predicate to apply to the optional's contents
+     * @param <T> type of containing optional
+     * @return the predicate
+     */
+    public static <T> Predicate<Optional<? extends T>> notHavingValue(Predicate<T> predicate) {
+        return havingValue(not(predicate));
+    }
+
+    /**
+     * Shorthand for {@code havingValue(not(equalTo(value)))}
+     * @param value the value to compare the contents to
+     * @param <T> type of containing optional
+     * @return the predicate
+     */
+    public static <T> Predicate<Optional<? extends T>> notHavingValue(T value) {
+        return notHavingValue(equalTo(value));
+    }
 }
