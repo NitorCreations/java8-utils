@@ -20,6 +20,7 @@ package com.nitorcreations.predicates;
 import java.util.Objects;
 import java.util.function.Function;
 import java.util.function.Predicate;
+import java.util.stream.Stream;
 
 public final class NPredicates {
     private NPredicates() { /** prevent instantiation */}
@@ -141,5 +142,54 @@ public final class NPredicates {
      */
     public static <T> Predicate<T> notHaving(Function<T, Boolean> fn) {
         return having(fn, equalTo(false));
+    }
+
+
+    /**
+     * Matches all of target predicates. Similar to {@code p1.and(p2).and(p3)...}
+     * @param preds predicates
+     * @param <T> type of predicate
+     * @return predicate
+     */
+    @SafeVarargs
+    public static <T> Predicate<T> allOf(Predicate<T>... preds) {
+        arrayNotEmpty(preds);
+        return Stream.of(preds).reduce(always(), (p1, p2) -> p1.and(p2));
+    }
+
+    /**
+     * Matches any of target predicates. Similar to {@code p1.or(p2).or(p3)...}
+     * @param preds predicates
+     * @param <T> type of predicate
+     * @return predicate
+     */
+    @SafeVarargs
+    public static <T> Predicate<T> anyOf(Predicate<T>... preds) {
+        arrayNotEmpty(preds);
+        return Stream.of(preds).reduce(never(), (p1, p2) -> p1.or(p2));
+    }
+
+    private static <T> void arrayNotEmpty(T[] arr) {
+        if (arr.length == 0) {
+            throw new IllegalArgumentException("Empty list of predicates");
+        }
+    }
+
+    /**
+     * Predicate that always returns {@code true}
+     * @param <T> type of predicate
+     * @return predicate
+     */
+    public static <T> Predicate<T> always() {
+        return ignore -> true;
+    }
+
+    /**
+     * Predicate that always returns {@code false}
+     * @param <T> type of predicate
+     * @return predicate
+     */
+    public static <T> Predicate<T> never() {
+        return ignore -> false;
     }
 }
