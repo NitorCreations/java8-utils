@@ -28,8 +28,8 @@ import static com.nitorcreations.streams.Fixture.entries;
 import static com.nitorcreations.streams.Fixture.listWithDuplicates;
 import static com.nitorcreations.streams.NCollectors.countingOccurrences;
 import static com.nitorcreations.streams.NCollectors.entriesToMap;
-import static com.nitorcreations.TestUtils.invokePrivateConstructor;
-import static org.assertj.core.api.Assertions.assertThat;
+import static com.nitorcreations.test.TestUtils.invokePrivateConstructor;
+import static com.nitorcreations.test.Assertions.assertThat;
 import static org.assertj.core.util.Lists.emptyList;
 
 public class NCollectorsTest {

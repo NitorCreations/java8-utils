@@ -26,9 +26,9 @@ import java.util.stream.Stream;
 
 import static com.nitorcreations.predicates.NOptionalPredicates.*;
 import static com.nitorcreations.predicates.NPredicates.having;
-import static com.nitorcreations.TestUtils.invokePrivateConstructor;
+import static com.nitorcreations.test.TestUtils.invokePrivateConstructor;
 import static java.util.stream.Collectors.toList;
-import static org.assertj.core.api.Assertions.assertThat;
+import static com.nitorcreations.test.Assertions.assertThat;
 
 public class NOptionalPredicatesTest {
 
@@ -42,22 +42,28 @@ public class NOptionalPredicatesTest {
 
     @Test
     public void testEmpty() {
-        assertThat(empty().test(emptyOpt)).isTrue();
-        assertThat(empty().test(opt)).isFalse();
+        assertThat(empty()).matches(emptyOpt).doesNotMatch(opt);
     }
 
     @Test
     public void testPresent() {
-        assertThat(present().test(opt)).isTrue();
-        assertThat(present().test(emptyOpt)).isFalse();
+        assertThat(present()).matches(opt).doesNotMatch(emptyOpt);
     }
 
     @Test
     public void testHavingValue() {
-        assertThat(havingValue("Foo").test(opt)).isTrue();
-        assertThat(havingValue("Bar").test(opt)).isFalse();
+        assertThat(havingValue("Foo")).matches(opt);
+        assertThat(havingValue("Bar")).doesNotMatch(opt);
 
-        assertThat(havingValue((String) null).test(opt)).isFalse();
+        assertThat(havingValue((String) null)).doesNotMatch(opt);
+    }
+
+    @Test
+    public void testNotHavingValue() {
+        assertThat(notHavingValue("Foo")).doesNotMatch(opt);
+        assertThat(notHavingValue("Bar")).matches(opt);
+
+        assertThat(notHavingValue((String) null)).matches(opt);
     }
 
     @Test

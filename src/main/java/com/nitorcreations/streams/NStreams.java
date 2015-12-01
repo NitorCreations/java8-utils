@@ -76,7 +76,9 @@ public final class NStreams {
      * @return a stream containing the values of the iterable
      */
     public static <T> Stream<T> asStream(Iterable<T> iterable, boolean parallel) {
-        return StreamSupport.stream(iterable.spliterator(), parallel);
+        return Optional.ofNullable(iterable)
+                .map(it -> StreamSupport.stream(it.spliterator(), parallel))
+                .orElse(Stream.empty());
     }
 
     /**

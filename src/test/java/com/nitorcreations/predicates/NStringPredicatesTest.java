@@ -4,9 +4,9 @@ import org.junit.Test;
 
 import java.lang.reflect.InvocationTargetException;
 
-import static com.nitorcreations.TestUtils.invokePrivateConstructor;
+import static com.nitorcreations.test.TestUtils.invokePrivateConstructor;
 import static com.nitorcreations.predicates.NStringPredicates.*;
-import static com.nitorcreations.predicates.PredicateAssert.assertThat;
+import static com.nitorcreations.test.Assertions.assertThat;
 
 public class NStringPredicatesTest {
 
@@ -83,6 +83,13 @@ public class NStringPredicatesTest {
         assertThat(doesNotContainAnyOf("foo", "bar"))
                 .matchesAll("", "baz", "of", "fo", "fo of")
                 .matchesNone(null, "foo", "bar", "foobar", "ooffoo", "barfoo", "barfooazx");
+    }
+
+    @Test
+    public void testDoesNotContainAllOf() {
+        assertThat(doesNotContainAllOf("foo", "bar"))
+                .matchesAll("", "baz", "of", "fo", "fo of", "foo ba", "fo bar", "foo", "bar")
+                .matchesNone(null, "foobar", "barfoo", "barfooazx");
     }
 
 }

@@ -24,12 +24,14 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import static com.nitorcreations.streams.NStreams.asStream;
-import static com.nitorcreations.TestUtils.invokePrivateConstructor;
+import static com.nitorcreations.test.TestUtils.invokePrivateConstructor;
 import static java.util.Arrays.asList;
 import static java.util.stream.Collectors.toList;
-import static org.assertj.core.api.Assertions.assertThat;
+import static com.nitorcreations.test.Assertions.assertThat;
 
 public class NStreamsTest {
 
@@ -59,6 +61,12 @@ public class NStreamsTest {
     public void iteratorToStream() {
         final List<Integer> actual = asStream(list.listIterator()).collect(toList());
         assertThat(actual).containsExactlyElementsOf(list);
+    }
+
+    @Test
+    public void nullToEmptyStream() {
+        final Stream<String> actual = asStream((Iterable<String>) null);
+        assertThat(actual.collect(Collectors.toList())).isEmpty();
     }
 
     @Test

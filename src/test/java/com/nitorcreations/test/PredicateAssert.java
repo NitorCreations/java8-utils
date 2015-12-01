@@ -1,4 +1,4 @@
-package com.nitorcreations.predicates;
+package com.nitorcreations.test;
 
 import org.assertj.core.api.AbstractAssert;
 
@@ -11,11 +11,11 @@ import static java.util.stream.Collectors.toList;
 
 public class PredicateAssert<T> extends AbstractAssert<PredicateAssert<T>, Predicate<T>> {
 
-    public PredicateAssert(Predicate<T> actual) {
+    PredicateAssert(Predicate<T> actual) {
         super(actual, PredicateAssert.class);
     }
 
-    public static <T> PredicateAssert<T> assertThat(Predicate<T> predicate) {
+    static <T> PredicateAssert<T> assertThat(Predicate<T> predicate) {
         return new PredicateAssert<>(predicate);
     }
 

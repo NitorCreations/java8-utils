@@ -1,4 +1,4 @@
-package com.nitorcreations;
+package com.nitorcreations.test;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;

@@ -2,12 +2,12 @@ package com.nitorcreations.predicates;
 
 import java.util.Arrays;
 import java.util.function.Predicate;
-import java.util.stream.Stream;
 
 import static com.nitorcreations.predicates.NPredicates.*;
 import static com.nitorcreations.streams.NStreams.asStream;
+import static java.util.Arrays.asList;
 
-public class NCollectionPredicates {
+public final class NCollectionPredicates {
     private NCollectionPredicates() { /** prevent instantiation */}
 
 
@@ -47,8 +47,20 @@ public class NCollectionPredicates {
      * @param <S> type of the iterable
      * @return predicate
      */
+    @SafeVarargs
     public static <T, S extends Iterable<T>> Predicate<S> containsAll(T... elements) {
-        final Predicate<S> allmatch = Stream.of(elements)
+        return containsAll(asList(elements));
+    }
+
+    /**
+     * Checks that the iterable is non-null and contains all of the target elements (comparison by {@code #equals})
+     * @param elements
+     * @param <T> type of an element
+     * @param <S> type of the iterable
+     * @return predicate
+     */
+    public static <T, S extends Iterable<T>> Predicate<S> containsAll(Iterable<T> elements) {
+        final Predicate<S> allmatch = asStream(elements)
                 .map(NCollectionPredicates::<T, S>contains)
                 .reduce(notEmpty(), (p1, p2) -> p1.and(p2));
         return  NPredicates.<S>notNull().and(allmatch);
@@ -60,16 +72,28 @@ public class NCollectionPredicates {
      * @param <S> type of the iterable
      * @return predicate
      */
+    @SafeVarargs
     public static <T, S extends Iterable<T>> Predicate<S> containsAny(T... elements) {
-        final Predicate<S> anyMatches = Arrays.stream(elements)
+        return containsAny(asList(elements));
+    }
+
+    /**
+     * Checks that the iterable is non-null and contains any of the target elements (comparison by {@code #equals})
+     * @param elements
+     * @param <T> type of an element
+     * @param <S> type of the iterable
+     * @return predicate
+     */
+    public static <T, S extends Iterable<T>> Predicate<S> containsAny(Iterable<T> elements) {
+        final Predicate<S> anyMatches = asStream(elements)
                 .map(NCollectionPredicates::<T, S>contains)
                 .reduce(never(), (p1, p2) -> p1.or(p2));
         return NPredicates.<S>notNull().and(anyMatches);
     }
 
-
     /**
      * Checks that the iterable is non-null and does not contain the target element (comparison by {@code #equals})
+     * @param element the element
      * @param <T> type of an element
      * @param <S> type of the iterable
      * @return predicate
@@ -80,11 +104,49 @@ public class NCollectionPredicates {
 
     /**
      * Checks that the iterable is non-null and contains none of target elements
+     * @param elements elements
      * @param <T> type of an element
      * @param <S> type of the iterable
      * @return predicate
      */
+    @SafeVarargs
     public static <T, S extends Iterable<T>> Predicate<S> doesNotContainAnyOf(T... elements) {
+        return doesNotContainAnyOf(Arrays.asList(elements));
+    }
+
+    /**
+     * Checks that the iterable is non-null and contains none of target elements
+     * @param elements elements
+     * @param <T> type of an element
+     * @param <S> type of the iterable
+     * @return predicate
+     */
+    public static <T, S extends Iterable<T>> Predicate<S> doesNotContainAnyOf(Iterable<T> elements) {
         return NPredicates.<S>notNull().and(not(containsAny(elements)));
+    }
+
+    /**
+     * Checks that iterable is non-null and does not contain all of the target elements. Will return {@code true} if some of the elements are present
+     *
+     * @param elements elements to find
+     * @param <T> type of an element
+     * @param <S> type of the iterable
+     * @return predicate
+     */
+    @SafeVarargs
+    public static <T, S extends Iterable<T>> Predicate<S> doesNotContainAllOf(T... elements) {
+        return doesNotContainAllOf(asList(elements));
+    }
+
+    /**
+     * Checks that iterable is non-null and does not contain all of the target elements. Will return {@code true} if some of the elements are present
+     *
+     * @param elements
+     * @param <T> type of an element
+     * @param <S> type of the iterable
+     * @return predicate
+     */
+    public static <T, S extends Iterable<T>> Predicate<S> doesNotContainAllOf(Iterable<T> elements) {
+        return NPredicates.<S>notNull().and(not(containsAll(elements)));
     }
 }

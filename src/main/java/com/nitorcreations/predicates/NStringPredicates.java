@@ -1,11 +1,12 @@
 package com.nitorcreations.predicates;
 
-import java.util.Arrays;
 import java.util.Objects;
 import java.util.function.Predicate;
 
 import static com.nitorcreations.predicates.NPredicates.not;
 import static com.nitorcreations.predicates.NPredicates.notNull;
+import static com.nitorcreations.streams.NStreams.asStream;
+import static java.util.Arrays.asList;
 
 public final class NStringPredicates {
     private NStringPredicates() { /** prevent instantiation */}
@@ -69,8 +70,18 @@ public final class NStringPredicates {
      * @return predicate
      */
     public static Predicate<String> containsAll(String... substring) {
+        return containsAll(asList(substring));
+    }
+
+    /**
+     * Check that the non-null string contains all of the substrings in any order
+     *
+     * @return predicate
+     * @param substrings
+     */
+    public static Predicate<String> containsAll(Iterable<String> substrings) {
         return NPredicates.<String> notNull()
-                .and(s -> Arrays.stream(substring)
+                .and(s -> asStream(substrings)
                         .filter(Objects::nonNull)
                         .map(s::contains)
                         .reduce(true, Boolean::logicalAnd));
@@ -83,8 +94,18 @@ public final class NStringPredicates {
      * @return predicate
      */
     public static Predicate<String> containsAny(String... substring) {
+        return containsAny(asList(substring));
+    }
+
+    /**
+     * Check that the non-null string contains any of the substrings
+     *
+     * @return predicate
+     * @param substrings
+     */
+    public static Predicate<String> containsAny(Iterable<String> substrings) {
         return NPredicates.<String> notNull()
-                .and(s -> Arrays.stream(substring)
+                .and(s -> asStream(substrings)
                         .filter(Objects::nonNull)
                         .anyMatch(s::contains));
     }
@@ -108,6 +129,39 @@ public final class NStringPredicates {
      * @return predicate
      */
     public static Predicate<String> doesNotContainAnyOf(String... substring) {
-        return not(containsAny(substring)).and(notNull());
+        return doesNotContainAnyOf(asList(substring));
+    }
+
+    /**
+     * Check that the non-null string does not contain any of the the substrings. The predicate will return {@code false}
+     * is target is {@code null}
+     *
+     * @return predicate
+     * @param substrings
+     */
+    public static Predicate<String> doesNotContainAnyOf(Iterable<String> substrings) {
+        return not(containsAny(substrings)).and(notNull());
+    }
+
+    /**
+     * Check that the non-null string does not contain any of the the substrings. The predicate will return {@code false}
+     * is target is {@code null}
+     *
+     * @param substring the string to find
+     * @return predicate
+     */
+    public static Predicate<String> doesNotContainAllOf(String... substring) {
+        return doesNotContainAllOf(asList(substring));
+    }
+
+    /**
+     * Check that the non-null string does not contain any of the the substrings. The predicate will return {@code false}
+     * is target is {@code null}
+     *
+     * @return predicate
+     * @param substrings
+     */
+    public static Predicate<String> doesNotContainAllOf(Iterable<String> substrings) {
+        return not(containsAll(substrings)).and(notNull());
     }
 }
