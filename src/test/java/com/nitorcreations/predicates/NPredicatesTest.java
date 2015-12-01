@@ -129,4 +129,14 @@ public class NPredicatesTest {
                 .matchesAll(null, 123l)
                 .matchesNone(122l);
     }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testAllOf_emptyArgs() {
+        allOf();
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testAnyOf_emptyArgs() {
+        anyOf();
+    }
 }

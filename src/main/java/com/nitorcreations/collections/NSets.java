@@ -38,11 +38,11 @@ public final class NSets {
     /**
      * Create a new set with the values of the given iterator
      *
-     * @param values the values to add to the set.
+     * @param iterator the values to add to the set.
      * @param <V> the type of the element
      * @return the set containing the values
      */
-    public static <V> Set<V> asSet(Iterator<V> values) {
-        return NStreams.asStream(values).collect(toSet());
+    public static <V> Set<V> asSet(Iterator<V> iterator) {
+        return asSet(() -> iterator);
     }
 }
