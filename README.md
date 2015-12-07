@@ -10,6 +10,10 @@ The package provides helper methods for interacting with, e.g., the stream featu
       <version>1.0.0</version>
     </dependency>
 
+### Gradle
+    
+    compile 'com.nitorcreations:java8utils:1.0.0'
+
 ## Stream helpers
 
 Transforming to streams:
