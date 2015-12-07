@@ -20,6 +20,7 @@ public final class NSets {
      * @param <V> the type of the element
      * @return the set containing the values
      */
+    @SafeVarargs
     public static <V> Set<V> asSet(V... values) {
         return new HashSet<>(asList(values));
     }
