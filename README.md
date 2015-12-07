@@ -2,6 +2,14 @@
 
 The package provides helper methods for interacting with, e.g., the stream features of Java 8 and above.
 
+### Maven
+
+    <dependency>
+      <groupId>com.nitorcreations</groupId>
+      <artifactId>java8utils</artifactId>
+      <version>1.0.0</version>
+    </dependency>
+
 ## Stream helpers
 
 Transforming to streams:
