@@ -11,7 +11,7 @@
 
     <groupId>com.nitorcreations</groupId>
     <artifactId>java8utils</artifactId>
-    <version>1.0.0-SNAPSHOT</version>
+    <version>1.0.1</version>
 
     <url>https://github.com/NitorCreations/java8-utils</url>
     <developers>
